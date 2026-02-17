@@ -1,561 +1,135 @@
-/* 1. Global Reset */
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    font-family: 'Poppins', sans-serif !important;
+    transition: all 0.3s ease;
 }
 
 body {
-    background: radial-gradient(circle at top left, #1a1a2e, #16213e, #0f3460) !important;
-    color: white;
-    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Upar se shuru hoga */
-    padding-top: 40px; /* Top se thoda gap */
+    justify-content: center;
     min-height: 100vh;
-    transition: 0.3s;
 }
 
-body.light-mode {
-    background: linear-gradient(135deg, #a8c0ff, #fbc2eb) !important;
-    color: #333;
-}
+.dark-mode { background: radial-gradient(circle, #1a2a6c, #b21f1f, #fdbb2d); color: white; }
+.light-mode { background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); color: #333; }
 
-/* 2. Dark Mode Button - Ekdum Center mein */
-#theme-btn {
-    width: 140px;
-    padding: 12px;
-    border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+.glass {
     background: rgba(255, 255, 255, 0.1);
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    margin-bottom: 25px; /* Calculator se door rakhega */
-}
-
-body.light-mode #theme-btn {
-    background: rgba(0, 0, 0, 0.1);
-    color: #333;
-    border-color: rgba(0, 0, 0, 0.1);
-}
-
-/* 3. Calculator Main Container */
-.calculator {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 30px;
-    padding: 25px;
-    width: 340px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.2);
 }
 
-/* 4. History Section */
+/* ✅ FIX 2: Reduced calculator size — was 340px with 25px padding */
+.calculator {
+    width: 300px;
+    padding: 16px;
+}
+
 .history-container {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 20px;
-    padding: 15px;
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-#history-list {
-    list-style: none;
-    max-height: 60px;
+    height: 90px;
     overflow-y: auto;
-    font-size: 0.9rem;
+    margin-bottom: 8px;
+    font-size: 0.75rem;
     opacity: 0.8;
 }
 
-/* 5. Display */
-#display {
-    width: 100%;
-    height: 60px;
-    background: transparent;
-    border: none;
-    color: inherit;
-    font-size: 2.8rem;
-    text-align: right;
-    margin-bottom: 20px;
-    outline: none;
+/* ✅ FIX 3: History header with label + clear button */
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+    opacity: 0.9;
 }
 
-/* 6. Buttons Grid */
-.buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+.history-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.6;
 }
 
-button {
-    height: 65px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255, 255, 255, 0.1);
-    color: inherit;
-    font-size: 1.3rem;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-button:active { transform: scale(0.9); }
-
-.btn-orange { 
-    background: #ff9f0a !important; 
-    color: white !important; 
-}
-/* --- FINAL FIX ALL-IN-ONE --- */
-
-/* 1. Pure page ko screen mein fit karega */
-body {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    height: 100vh !important;
-    margin: 0 !important;
-    overflow: hidden !important; 
-    background: radial-gradient(circle at top left, #1a1a2e, #16213e, #0f3460) !important;
-}
-
-/* 2. Dark Mode button ko center aur compact rakhega */
-#theme-btn {
-    position: relative !important;
-    margin: 0 auto 15px auto !important;
-    display: block !important;
-    padding: 8px 20px !important;
-    border-radius: 20px !important;
-    font-size: 14px !important;
-    z-index: 100 !important;
-}
-
-/* 3. Calculator ka size aur glass effect fix */
-.calculator {
-    width: 330px !important;
-    padding: 15px !important;
-    border-radius: 25px !important;
-    background: rgba(255, 255, 255, 0.1) !important;
-    backdrop-filter: blur(15px) saturate(160%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
-}
-
-/* 4. History section ko compact karega taaki buttons na dabein */
-.history-container {
-    background: rgba(0, 0, 0, 0.2) !important;
-    border-radius: 15px !important;
-    padding: 10px !important;
-    margin-bottom: 10px !important;
-    max-height: 100px !important;
-}
-
-#history-list {
-    max-height: 60px !important;
-    overflow-y: auto !important;
-    font-size: 13px !important;
-    list-style: none !important;
-    padding: 0 !important;
-}
-
-/* 5. Buttons ko pehle jaisa perfect circle aur size dega */
-.buttons {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 10px !important;
-}
-
-button {
-    height: 60px !important;
-    width: 60px !important;
-    border-radius: 50% !important;
-    font-size: 1.2rem !important;
-    margin: auto !important;
-}
-
-/* Special button width for '0' if needed */
-button[onclick*="'0'"] {
+.btn-clear-history {
     width: auto !important;
-    border-radius: 30px !important;
-}
-
-/* Display text size fix */
-#display {
-    height: 50px !important;
-    font-size: 2.2rem !important;
-    margin-bottom: 10px !important;
-}
-/* --- PERFECT BALANCE FIX --- */
-
-/* 1. Calculator Container ko sahi width do */
-.calculator {
-    width: 350px !important; /* Thoda wide taaki buttons ko jagah mile */
-    padding: 20px !important;
-    border-radius: 30px !important;
-}
-
-/* 2. History section ko thoda aur saaf dikhao */
-.history-container {
-    max-height: 90px !important;
-    margin-bottom: 15px !important;
-}
-
-/* 3. Buttons ka size aur gap ekdum perfect */
-.buttons {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 12px !important; /* Buttons ke beech ka gap sahi kiya */
-}
-
-button {
-    height: 68px !important; /* Size badha diya */
-    width: 68px !important;  /* Perfect Square/Circle base */
-    border-radius: 50% !important; /* Gol shape wapas */
-    font-size: 1.4rem !important; /* Text bada dikhega */
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    background: rgba(255, 255, 255, 0.12) !important;
-}
-
-/* 4. Zero (0) button ko oval shape do taaki wo fit ho jaye */
-button[onclick*="'0'"] {
-    width: 100% !important;
-    grid-column: span 2 !important;
-    border-radius: 35px !important;
-}
-
-/* 5. Dark Mode button ko upar center mein fix karo */
-#theme-btn {
-    width: auto !important;
-    min-width: 130px !important;
-    height: 45px !important;
-    margin-bottom: 20px !important;
-    font-size: 15px !important;
-    border-radius: 25px !important;
-}
-/* History container ko wapas line mein laane ke liye */
-.history-container {
-    display: flex !important;
-    flex-direction: column !important; /* Items ek ke niche ek aayenge */
-    align-items: flex-start !important; /* Sab kuch left se shuru hoga */
-    text-align: left !important;
-    padding: 12px !important;
-}
-
-#history-list {
-    width: 100% !important;
-    text-align: left !important;
-    margin: 5px 0 !important;
-    padding-left: 0 !important;
-}
-
-/* Clear History Button ko left mein shift karne ke liye */
-.clear-history-btn {
-    align-self: flex-start !important; /* Ye button ko left side khiskayega */
-    margin-top: 8px !important;
-    width: auto !important;
-    padding: 5px 15px !important;
     height: auto !important;
-    font-size: 12px !important;
     border-radius: 10px !important;
-    background: rgba(255, 255, 255, 0.1) !important;
-    cursor: pointer !important;
-}
-/* --- NEON GLOW EFFECTS --- */
-
-/* 1. Buttons par glowing border aur shadow */
-button {
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 2px 8px !important;
+    font-size: 0.65rem !important;
+    background: rgba(255, 80, 80, 0.4) !important;
+    color: inherit;
+    cursor: pointer;
+    border: 1px solid rgba(255,100,100,0.3) !important;
 }
 
-/* 2. Orange buttons (C aur =) ko extra neon glow do */
-.btn-orange {
-    box-shadow: 0 0 15px rgba(255, 159, 10, 0.4) !important;
-    border: 1px solid rgba(255, 159, 10, 0.6) !important;
+.btn-clear-history:hover {
+    background: rgba(255, 80, 80, 0.65) !important;
 }
 
-/* 3. Button dabane par glowing "Pulse" effect */
-button:active {
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4) !important;
-    transform: scale(0.95);
+.history-item {
+    text-align: right;
+    padding: 1px 0;
+    font-size: 0.75rem;
+    opacity: 0.75;
 }
 
-/* 4. Calculator container ka glassy neon border */
-.calculator {
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.05) !important;
-}
-
-/* 5. Display ke numbers par halka glow */
-#display {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-}
-
-/* Light mode mein glow thoda soft rakha hai */
-body.light-mode button {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
-}
-/* Google Fonts se modern font import karo */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Orbitron:wght@500&display=swap');
-
-/* 1. Poore Calculator ke liye Modern Font */
-body {
-    font-family: 'Poppins', sans-serif !important;
-}
-
-/* 2. Display ke Numbers ko "Digital/Futuristic" look do */
-#display {
-    font-family: 'Orbitron', sans-serif !important; /* Digital look */
-    font-weight: 500 !important;
-    letter-spacing: 2px !important;
-    color: #fff !important;
-}
-
-/* 3. Buttons ke text ko Bold aur Saaf karo */
-button {
-    font-family: 'Poppins', sans-serif !important;
-    font-weight: 600 !important;
-    font-size: 1.4rem !important;
-}
-
-/* 4. History aur Labels ka look set karo */
-.history-container p {
-    font-weight: 600 !important;
-    letter-spacing: 1px !important;
-    text-transform: uppercase !important;
-    font-size: 0.7rem !important;
-    opacity: 0.7 !important;
-}
-
-#history-list li {
-    font-family: 'Poppins', sans-serif !important;
-    font-size: 0.9rem !important;
-    margin-bottom: 4px !important;
-}
-/* History Container ka size badao */
-.history-container {
-    height: auto !important;
-    min-height: 100px !important; /* Thoda bada kiya taaki calculations dikhein */
-    max-height: 150px !important;
-    overflow: hidden !important;
-    width: 100% !important;
-    padding: 15px !important;
-    background: rgba(255, 255, 255, 0.05) !important;
-    margin-bottom: 20px !important;
-}
-
-/* History List ke items ki spacing */
-#history-list {
-    max-height: 80px !important; /* List ko scroll karne ki jagah di */
-    overflow-y: auto !important;
-    list-style: none !important;
-    padding: 0 !important;
-    text-align: left !important;
-}
-
-#history-list li {
-    padding: 5px 0 !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important; /* Halka divider */
-    font-size: 1rem !important; /* Font size wapas bada kiya */
-    color: rgba(255, 255, 255, 0.9) !important;
-}
-
-/* Clear History button ko thoda niche aur saaf karo */
-.clear-history-btn {
-    margin-top: 10px !important;
-    opacity: 0.6 !important;
-    font-size: 11px !important;
-}
-/* History Panel ko ekdum clean aur organized rakhega */
-.history-container {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important; /* Items ko poori width dega */
-    padding: 20px !important;
-    margin-bottom: 25px !important;
-}
-
-#history-list {
-    margin-bottom: 10px !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; /* Halka divider line */
-}
-
-/* Clear History Button ko neechay center mein thoda stylish banao */
-.clear-history-btn {
-    align-self: center !important; 
-    background: rgba(255, 255, 255, 0.08) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    color: rgba(255, 255, 255, 0.6) !important;
-    padding: 6px 20px !important;
-    font-size: 11px !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1px !important;
-    transition: 0.3s !important;
-}
-
-.clear-history-btn:hover {
-    background: rgba(255, 59, 48, 0.2) !important; /* Halka red tint on hover */
-    color: white !important;
-}
-/* Poore calculator ko screen ke andar fit karne ke liye */
-.calculator {
-    height: auto !important;
-    max-height: 95vh !important; /* Screen height se bahar nahi jayega */
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-    padding: 15px !important;
-}
-
-/* History ko thoda chota karo taaki buttons upar aa jayein */
-.history-container {
-    min-height: 80px !important;
-    max-height: 100px !important;
-    margin-bottom: 10px !important;
-    padding: 10px !important;
-}
-
-#history-list {
-    max-height: 50px !important; /* Sirf 2-3 line dikhengi, baaki scroll hogi */
-}
-
-/* Buttons ka gap thoda kam karo */
-.buttons {
-    gap: 8px !important;
-}
-
-button {
-    height: 62px !important; /* Thoda sa size kam kiya taaki sab fit ho jaye */
-    width: 62px !important;
-}
-
-/* Display ka margin kam karo */
-#display {
-    margin-bottom: 5px !important;
-    font-size: 2.4rem !important;
-}
-/* 1. Calculator Container ko screen mein fit karega */
-.calculator {
-    max-height: 85vh !important; /* Screen se bahar nahi jayega */
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-around !important;
-    padding: 15px !important;
-    width: 340px !important;
-}
-
-/* 2. History section ko compact karega taaki buttons upar aa sakein */
-.history-container {
-    height: 90px !important; /* Size fix kiya */
-    padding: 8px 15px !important;
-    margin-bottom: 5px !important;
-}
-
-#history-list {
-    max-height: 50px !important; /* Sirf 2 line dikhengi, baaki scroll hongi */
-    font-size: 0.85rem !important;
-}
-
-/* 3. Buttons ka size aur gap perfect karega */
-.buttons {
-    gap: 8px !important;
-}
-
-button {
-    height: 58px !important; /* Size thoda kam kiya taaki sab ek screen mein dikhe */
-    width: 58px !important;
-    font-size: 1.2rem !important;
-}
-
-/* 4. Display text ko thoda chota kiya */
-#display {
-    height: 45px !important;
-    font-size: 2.2rem !important;
-    margin-bottom: 5px !important;
-}
-
-/* 5. Neon Glow on Results */
-.btn-orange {
-    box-shadow: 0 0 15px rgba(255, 159, 10, 0.5) !important;
-    background: #ff9f0a !important;
-}
-/* History ka size halka sa badhane ke liye */
-.history-container {
-    min-height: 110px !important; /* Halka sa height badha di */
-    max-height: 130px !important;
-    padding: 12px 18px !important;
-    margin-bottom: 12px !important;
-}
-
-#history-list {
-    max-height: 85px !important; /* List ko thoda aur room diya */
-    font-size: 1.1rem !important; /* Numbers thode bade aur clear dikhenge */
-}
-
-/* Clear History button ko thoda niche set kiya */
-.clear-history-btn {
-    margin-top: 5px !important;
-    padding: 4px 12px !important;
-}
-/* Buttons par touch/hover effect */
-button:hover {
-    background: rgba(255, 255, 255, 0.25) !important; /* Halka light background */
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3) !important; /* White glow */
-    transform: translateY(-3px) scale(1.05); /* Thoda upar aur bada dikhega */
-    transition: all 0.2s ease;
-}
-
-/* Orange buttons ke liye special orange glow */
-.btn-orange:hover {
-    box-shadow: 0 0 20px rgba(255, 159, 10, 0.6) !important;
-}
-/* Calculator ke upar kanch wali chamak */
-.calculator {
-    position: relative;
-    overflow: hidden; /* Chamak ko dabba ke andar hi rakhega */
-}
-
-.calculator::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -150%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-        45deg,
-        transparent,
-        rgba(255, 255, 255, 0.05),
-        transparent
-    );
-    transform: rotate(25deg);
-    transition: 0.8s;
-    pointer-events: none; /* Buttons ke beech mein rukawat nahi banega */
-}
-
-/* Jab calculator ke aas-paas touch karoge, light chamkegi */
-.calculator:hover::before {
-    left: 100%;
-}
-/* Numbers ke aane-jaane ko smooth banane ke liye */
-#display {
-    transition: all 0.3s ease-in-out !important;
+.history-ans {
+    font-weight: 600;
     opacity: 1;
 }
 
-/* Jab calculation change ho, halka sa effect dikhe */
-#display:active {
-    transform: scale(0.98);
-    opacity: 0.8;
+#display {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: inherit;
+    /* ✅ FIX 2: Reduced from 3rem — fits better on small screens */
+    font-size: 2.4rem;
+    text-align: right;
+    margin-bottom: 12px;
+    outline: none;
 }
 
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* ✅ FIX 2: Tighter gap */
+    gap: 8px;
+}
 
+/* ✅ FIX 2: Smaller buttons — was 65px */
+button {
+    height: 56px;
+    width: 56px;
+    border-radius: 50%;
+    border: none;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.15);
+    color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
 
+.btn-orange { background: #ff9f0a !important; color: white; }
+.btn-gray { background: rgba(255, 255, 255, 0.3) !important; }
+.btn-sci { color: #00d2ff; font-size: 0.8rem; }
 
+button:active { transform: scale(0.9); opacity: 0.8; }
+
+.btn-mode-small {
+    width: auto !important;
+    height: auto !important;
+    padding: 7px 18px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+    font-size: 11px;
+}
 
