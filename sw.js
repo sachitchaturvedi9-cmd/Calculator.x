@@ -1,15 +1,15 @@
-const CACHE = 'godcalc-v3';
+const CACHE = 'godcalc-v4';
 
 self.addEventListener('install', function(e) {
   self.skipWaiting();
   e.waitUntil(
     caches.open(CACHE).then(function(cache) {
       return cache.addAll([
-        './',
-        './index.html',
-        './tools.html',
-        './style.css',
-        './Script.js',
+        '/Calculator.x/',
+        '/Calculator.x/index.html',
+        '/Calculator.x/tools.html',
+        '/Calculator.x/style.css',
+        '/Calculator.x/Script.js', 
       ]);
     })
   );
@@ -37,7 +37,7 @@ self.addEventListener('fetch', function(e) {
         });
       });
     }).catch(function() {
-      return caches.match('./index.html');
+      return caches.match('/Calculator.x/index.html');
     })
   );
 });
